@@ -1,0 +1,54 @@
+version: '2'
+services:
+    zipkin:
+        image: openzipkin/zipkin
+        container_name: zipkin
+        environment:
+         - STORAGE_TYPE=mem
+        ports:
+           - '9411:9411'
+        networks:
+          - activity-java-network
+    eurekaserver:
+        image: 'custom-eureka-server-image:v1'
+        build: customeurekaserver/
+        ports:
+            - '8761:8761'
+        networks:
+            - activity-java-network
+        container_name: eurekaserver-container
+    conversion-service:
+        image: 'conversion-service-image:v1'
+        build: conversion/
+        ports:
+            - '8081:8081'
+        networks:
+            - activity-java-network
+        container_name: conversion-service-container
+        depends_on:
+         - eurekaserver
+         - zipkin
+    exchange-service:
+        image: 'exchange-service-image:v1'
+        build: Exchange/
+        container_name: exchange-service-container
+        ports:
+            - '8181:8181'
+        networks:
+         - activity-java-network
+        depends_on:
+          - eurekaserver
+          - zipkin
+    zuul-api-gateway-server:
+        image: 'zuul-api-gateway-server-image:v1'
+        build: ZuulProxy/
+        container_name: zuul-api-gateway-server-container
+        ports:
+            - '8765:8765'
+        networks:
+         - activity-java-network
+        depends_on:
+         - eurekaserver
+         - zipkin
+networks:
+    activity-java-network: null 
