@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+    name: eureka-deployment
+    labels:
+      app: eurekaserver
+      type: backend-service
+spec:
+    replicas: 1
+    selector:
+      matchLabels:  
+          app: eurekaserver
+    template:
+      metadata:
+        labels:
+          app: eurekaserver
+      spec: 
+        containers:
+          - name: eurekaserver-container
+            image: a0c0wk/ft_eureka
+            ports: 
+             - containerPort: 8761 

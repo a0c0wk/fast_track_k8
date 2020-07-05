@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+    name: zuul-deployment
+    labels:
+      app: zuul-api-gateway-server
+      type: frontend-service
+spec:
+    replicas: 1
+    selector:
+      matchLabels:  
+          app: zuul-api-gateway-server
+    template:
+      metadata:
+        labels:
+          app: zuul-api-gateway-server
+      spec: 
+        containers:
+          - name: zuul-api-gateway-server-container
+            image: a0c0wk/ft_zuul_api_gateway
+            ports: 
+             - containerPort: 8765

@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+    name: exchange-deployment
+    labels:
+      app: exchange-app
+      type: backend-service
+spec:
+    replicas: 1
+    selector:
+      matchLabels:  
+          app: exchange-app
+    template:
+      metadata:
+        labels:
+          app: exchange-app
+      spec: 
+        containers:
+          - name: exchange-service-container
+            image: a0c0wk/ft_exchange
+            ports: 
+             - containerPort: 8181 
