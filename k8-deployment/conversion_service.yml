@@ -4,7 +4,8 @@ kind: Service
 metadata:
     name: conversion-service
         
-spec:    
+spec:
+    type: "LoadBalancer"
     ports: 
       - targetPort: 8081
         port: 8081        
