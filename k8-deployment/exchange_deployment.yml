@@ -18,6 +18,6 @@ spec:
       spec: 
         containers:
           - name: exchange-service-container
-            image: a0c0wk/ft_exchange
+            image: a0c0wk/ft_exchange:1.0
             ports: 
              - containerPort: 8181 
