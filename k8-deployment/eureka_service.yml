@@ -4,7 +4,8 @@ kind: Service
 metadata:
     name: eurekaserver
         
-spec:    
+spec:
+    type: "LoadBalancer"
     ports: 
       - targetPort: 8761
         port: 8761        
