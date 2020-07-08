@@ -4,8 +4,7 @@ kind: Service
 metadata:
     name: zuul-service
         
-spec:
-    type: LoadBalancer
+spec:    
     ports: 
       - targetPort: 8765
         port: 8765        
