@@ -4,7 +4,8 @@ kind: Service
 metadata:
     name: exchange-service
         
-spec:    
+spec:
+    type: "LoadBalancer"
     ports: 
       - targetPort: 8181
         port: 8181        
