@@ -18,6 +18,6 @@ spec:
       spec: 
         containers:
           - name: conversion-service-container
-            image: a0c0wk/ft_conversion
+            image: a0c0wk/ft_conversion:1.1
             ports: 
              - containerPort: 8081 
