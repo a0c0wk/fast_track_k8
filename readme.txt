@@ -25,17 +25,9 @@
 # Docker Hub : https://hub.docker.com/
 
 # Docker commands :
-docker build -t a0c0wk/ft_conversion:1.2 .
-docker push a0c0wk/ft_conversion:1.2
-
-docker build -t a0c0wk/ft_exchange
-docker push a0c0wk/ft_exchange
-
-docker build -t a0c0wk/ft_eureka
-docker push a0c0wk/ft_eureka
-
-docker build -t a0c0wk/ft_zuul_api_gateway
-docker push a0c0wk/ft_zuul_api_gateway
+docker build -t {dockerhub id}/{docker hub repo name}:{tag name} .
+docker push {dockerhub id}/{docker hub repo name}:{tag name}
+note : docker hub repo name = image name
 
 #Docker-compose
 docker-compose up -d  
