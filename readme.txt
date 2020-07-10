@@ -9,7 +9,8 @@
 	#http://localhost:8081/conversion/factor/CAD
 	#http://localhost:8081/conversion/details/USD
 
-#Zipkin URL   http://localhost:9411/zipkin     C:\Users\AmitJain>java -jar zipkin.jar
+#Zipkin URL   http://localhost:9411/zipkin   
+        Running zipkin localy : C:\Users\AmitJain>java -jar zipkin.jar
 	#docker run -d -p 9411:9411 openzipkin/zipkin
 
 #Eureka  URl  http://localhost:8761/
@@ -20,4 +21,33 @@
 	#http://localhost:8765/conversion-service/conversion/factor/CAD
 	#http://localhost:8765/exchange-service/exchange/feign/USD/10000
 
+
+# Docker Hub : https://hub.docker.com/
+
+# Docker commands :
+docker build -t a0c0wk/ft_conversion:1.2 .
+docker push a0c0wk/ft_conversion:1.2
+
+docker build -t a0c0wk/ft_exchange
+docker push a0c0wk/ft_exchange
+
+docker build -t a0c0wk/ft_eureka
+docker push a0c0wk/ft_eureka
+
+docker build -t a0c0wk/ft_zuul_api_gateway
+docker push a0c0wk/ft_zuul_api_gateway
+
+#Docker-compose
+docker-compose up -d  
+docker-compose down -v --rmi 
+
+#Kubernetes command 
+Kubectl create -f *.yml
+Kubectl create -f conversion_deployment.yml
+Kubectl replace -f conversion_deployment.yml
+Kubectl apply -f conversion_deployment.yml
+Kubectl apply -f conversion_service.yml
+kubectl get all
+kubectl get pods -o=wide
+kubectl logs -f pod-name
 
