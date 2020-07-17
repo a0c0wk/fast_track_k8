@@ -8,6 +8,8 @@ import com.netflix.ribbon.proxy.annotation.Hystrix;
 
 import lombok.extern.slf4j.Slf4j;
 
+import javax.transaction.Transactional;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +18,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @Slf4j
+@Transactional
 public class ConvertionSvc {
 	
 	Logger logger = LoggerFactory.getLogger(ConvertionSvc.class);
@@ -54,5 +57,39 @@ public class ConvertionSvc {
     	System.out.println(" Called Circuit breaker method ");
     	return -0.0;
     }
+
+
+	public void addConversionFactor(ConversionModel model) {
+		// TODO Auto-generated method stub
+		if(null == conversionRepository.findByCountryCode(model.getCountryCode())){
+			ConversionTable conversionTable = new ConversionTable()	;
+			conversionTable.setConversionFactor(model.getConversionFactor());
+			conversionTable.setCountryCode(model.getCountryCode());
+			conversionRepository.save(conversionTable);
+		}
+			
+	}
+
+
+	public void updateConversionFactor(ConversionModel model) {
+		// TODO Auto-generated method stub
+		ConversionTable conversionTable = conversionRepository.findByCountryCode(model.getCountryCode());
+		if(null != conversionTable)
+		{
+			conversionTable.setConversionFactor(model.getConversionFactor());
+			conversionTable.setCountryCode(model.getCountryCode());
+			conversionRepository.saveAndFlush(conversionTable);
+		}
+	}
+
+
+	public void deleteConversionFactor(ConversionModel model) {
+		// TODO Auto-generated method stub
+		ConversionTable conversionTable = conversionRepository.findByCountryCode(model.getCountryCode());
+		if(null != conversionTable)
+		{
+			conversionRepository.delete(conversionTable);
+		}
+	}
 
 }
