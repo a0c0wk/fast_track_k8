@@ -18,6 +18,6 @@ spec:
       spec: 
         containers:
           - name: zuul-api-gateway-server-container
-            image: a0c0wk/ft_zuul_api_gateway
+            image: a0c0wk/ft_zuul_api_gateway:1.1
             ports: 
              - containerPort: 8765
