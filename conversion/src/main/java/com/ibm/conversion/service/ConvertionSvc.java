@@ -1,13 +1,5 @@
 package com.ibm.conversion.service;
 
-import com.ibm.conversion.dao.ConversionRepository;
-import com.ibm.conversion.domain.ConversionModel;
-import com.ibm.conversion.entity.ConversionTable;
-import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
-import com.netflix.ribbon.proxy.annotation.Hystrix;
-
-import lombok.extern.slf4j.Slf4j;
-
 import javax.transaction.Transactional;
 
 import org.slf4j.Logger;
@@ -15,6 +7,13 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
+
+import com.ibm.conversion.dao.ConversionRepository;
+import com.ibm.conversion.domain.ConversionModel;
+import com.ibm.conversion.entity.ConversionTable;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+
+import lombok.extern.slf4j.Slf4j;
 
 @Service
 @Slf4j
